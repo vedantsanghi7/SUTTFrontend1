@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notion – Your connected workspace for wiki, docs & projects</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            background: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            z-index: 1000;
+            border-bottom: 1px solid #e8e8e8;
+
+        }
+
+        .nav-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #000;
+            font-size: 15px;
+            font-weight: 400;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a:hover {
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        .dropdown-arrow {
+            margin-left: 6px;
+            font-size: 9px;
+            opacity: 0.6;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn {
+            padding: 10px 16px;
+            font-size: 15px;
+            font-weight: 400;
+            border: none;
+            background: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            color: #000;
+            white-space: nowrap;
+        }
+
+        .nav-btn:hover {
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        .btn-primary {
+            background: #0073EA;
+            color: white !important;
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-weight: 500;
+        }
+
+        .btn-primary:hover {
+            background: #0060C0;
+            color: white !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 120px;
+            padding-bottom: 60px;
+            background: #ffffff;
+        }
+
+        .hero-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 40px;
+            text-align: center;
+        }
+
+        .hero-characters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 48px;
+            min-height: 100px;
+        }
+
+        .hero-characters img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .hero-title {
+            font-size: 68px;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: #000;
+            margin-bottom: 24px;
+        }
+
+        .hero-subtitle {
+            font-size: 22px;
+            line-height: 1.5;
+            color: rgba(0, 0, 0, 0.7);
+            margin-bottom: 32px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .hero-btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+            border: none;
+        }
+
+        .hero-btn-primary {
+            background: #0073EA;
+            color: white;
+        }
+
+        .hero-btn-primary:hover {
+            background: #0060C0;
+        }
+
+        .hero-btn-secondary {
+            background: #f1f3f4;
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        .hero-btn-secondary:hover {
+            background: #e8eaed;
+        }
+
+        .hero-demo {
+            background: #f7f7f7;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-demo img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Company Logos */
+        .company-logos {
+            padding: 40px 0;
+            background: #ffffff;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .logos-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            overflow-x: auto;
+        }
+
+        .logos-label {
+            font-size: 14px;
+            color: #999;
+            white-space: nowrap;
+        }
+
+        .logos-list {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .logo-item {
+            height: 32px;
+        }
+
+        .logo-item img {
+            height: 100%;
+            width: auto;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        .logo-item:hover img {
+            opacity: 1;
+        }
+
+        /* Section Intro */
+        .section-intro {
+            padding: 100px 40px;
+            background: #f7f7f7;
+        }
+
+        .section-intro-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .intro-content h2 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .intro-badge {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #0073EA;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .intro-content p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 24px;
+        }
+
+        .intro-list {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .intro-list li {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .arrow-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: #000;
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+
+        .arrow-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .intro-visual {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .intro-visual img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 100px 40px;
+            background: #f7f7f7;
+        }
+
+        .testimonials-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .testimonials h2 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 60px;
+        }
+
+        .testimonial-featured {
+            background: #fff;
+            border-radius: 16px;
+            padding: 60px;
+            margin-bottom: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .testimonial-content h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .testimonial-quote {
+            font-size: 28px;
+            line-height: 1.5;
+            color: #000;
+            margin-bottom: 32px;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-link {
+            color: #0073EA;
+            text-decoration: none;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .testimonial-link:hover {
+            text-decoration: underline;
+        }
+
+        .testimonial-video {
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .testimonial-video img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 64px;
+            height: 64px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .play-button:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .testimonial-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 40px;
+            transition: transform 0.2s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .testimonial-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .testimonial-card p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* Quote Section */
+        .quote-section {
+            padding: 80px 40px;
+            background: #f7f7f7;
+            text-align: center;
+        }
+
+        .quote-section blockquote {
+            font-size: 42px;
+            line-height: 1.4;
+            font-family: Georgia, serif;
+            margin-bottom: 16px;
+        }
+
+        .quote-section cite {
+            font-size: 24px;
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        /* Pricing Calculator */
+        .pricing-calculator {
+            padding: 100px 40px;
+            background: #ffffff;
+        }
+
+        .calculator-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .calculator-content h2 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .calculator-content p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 24px;
+        }
+
+        .calculator-link {
+            color: #0073EA;
+            text-decoration: none;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .calculator-visual {
+            position: relative;
+        }
+
+        .calculator-visual img {
+            width: 100%;
+            height: auto;
+        }
+
+        .tools-icons {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+        }
+
+        .calculator-form {
+            background: #fff;
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            padding: 40px;
+        }
+
+        .form-section {
+            margin-bottom: 32px;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .checkbox-item label {
+            font-size: 15px;
+            color: #000;
+            cursor: pointer;
+        }
+
+        .pricing-display {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 32px;
+        }
+
+        .pricing-item h4 {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .pricing-item .price {
+            font-size: 48px;
+            font-weight: 700;
+        }
+
+        /* Feature Sections */
+        .feature-section {
+            padding: 100px 40px;
+        }
+
+        .feature-section:nth-child(even) {
+            background: #f7f7f7;
+        }
+
+        .feature-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .feature-reverse {
+            direction: rtl;
+        }
+
+        .feature-reverse>* {
+            direction: ltr;
+        }
+
+        .feature-content h3 {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 16px;
+        }
+
+        .feature-content h2 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .feature-content p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .feature-visual {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-visual img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* AI Use Cases */
+        .ai-use-cases {
+            padding: 100px 40px;
+            background: #f7f7f7;
+        }
+
+        .use-cases-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .use-cases-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 60px;
+        }
+
+        .use-cases-header h2 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.2;
+            max-width: 600px;
+        }
+
+        .use-cases-characters img {
+            height: 120px;
+            width: auto;
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .use-case-card {
+            background: #fff;
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            padding: 24px;
+            text-decoration: none;
+            color: #000;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .use-case-card:hover {
+            border-color: #000;
+            transform: translateY(-4px);
+        }
+
+        .use-case-icon {
+            font-size: 24px;
+            color: #999;
+        }
+
+        .use-case-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .use-case-arrow {
+            margin-left: auto;
+            font-size: 20px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 40px;
+            background: #ffffff;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 60px;
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 100px 40px;
+            background: #f7f7f7;
+        }
+
+        .products-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .product-info h3 {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .product-icon {
+            font-size: 48px;
+        }
+
+        .product-info p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 24px;
+        }
+
+        .product-visual {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .product-visual img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background: #f7f7f7;
+            border-top: 1px solid #e8e8e8;
+            padding: 80px 40px 40px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(4, 1fr);
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .footer-logo img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .footer-logo span {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-links a {
+            color: #666;
+            font-size: 20px;
+            transition: color 0.2s;
+        }
+
+        .social-links a:hover {
+            color: #000;
+        }
+
+        .footer-column h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-column ul li a:hover {
+            color: #000;
+        }
+
+        .footer-bottom {
+            padding-top: 40px;
+            border-top: 1px solid #e8e8e8;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-bottom-links a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-bottom-links a:hover {
+            color: #000;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background: #f7f7f7;
+            padding: 32px 40px;
+            overflow-x: auto;
+        }
+
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            white-space: nowrap;
+        }
+
+        .stat-icon {
+            font-size: 20px;
+            color: #999;
+        }
+
+        .stat-text {
+            font-size: 14px;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 44px;
+            }
+
+            .section-intro-container,
+            .testimonial-featured,
+            .calculator-container,
+            .feature-container,
+            .product-card,
+            .products-container {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid,
+            .use-cases-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="#" class="logo">
+                    <img src="images/notion-logo.svg" alt="Notion Logo" class="logo-icon">
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="#">Notion <span class="dropdown-arrow">▼</span></a></li>
+                    <li><a href="#">Mail</a></li>
+                    <li><a href="#">Calendar</a></li>
+                    <li><a href="#">AI</a></li>
+                    <li><a href="#">Enterprise</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Explore <span class="dropdown-arrow">▼</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-right">
+                <a href="#" class="nav-btn">Request a demo</a>
+                <a href="#" class="nav-btn">Log in</a>
+                <a href="#" class="nav-btn btn-primary">Get Notion free</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-characters">
+                <img src="images/hero-characters.png" alt="Notion Characters">
+            </div>
+
+            <h1 class="hero-title">The AI workspace<br>that works for you.</h1>
+
+            <p class="hero-subtitle">
+                Notion is where teams, tools, and agents come together to get everything done faster.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#" class="hero-btn hero-btn-primary">Get Notion free</a>
+                <a href="#" class="hero-btn hero-btn-secondary">Request a demo</a>
+            </div>
+
+            <div class="hero-demo">
+                <img src="images/hero-demo.png" alt="Notion Dashboard Demo">
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Logos -->
+    <section class="company-logos">
+        <div class="logos-container">
+            <span class="logos-label">Trusted by top teams</span>
+            <div class="logos-list">
+                <div class="logo-item"><img src="images/logo-openai.png" alt="OpenAI"></div>
+                <div class="logo-item"><img src="images/logo-figma.png" alt="Figma"></div>
+                <div class="logo-item"><img src="images/logo-ramp.png" alt="Ramp"></div>
+                <div class="logo-item"><img src="images/logo-cursor.png" alt="Cursor"></div>
+                <div class="logo-item"><img src="images/logo-vercel.png" alt="Vercel"></div>
+                <div class="logo-item"><img src="images/logo-nvidia.png" alt="NVIDIA"></div>
+                <div class="logo-item"><img src="images/logo-volvo.png" alt="Volvo"></div>
+                <div class="logo-item"><img src="images/logo-perplexity.png" alt="Perplexity"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notion 3.0 Section -->
+    <section class="section-intro">
+        <div class="section-intro-container">
+            <div class="intro-content">
+                <h2>Introducing Notion 3.0</h2>
+                <span class="intro-badge">Notion Agent <span style="margin-left: 8px;">New</span></span>
+                <h3 style="font-size: 32px; font-weight: 700; margin-bottom: 16px;">You assign the tasks. Your Notion
+                    Agent does the work.</h3>
+                <a href="#" class="arrow-btn">→</a>
+
+                <div style="margin-top: 48px;">
+                    <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">Hand off your busywork</h4>
+                    <p>What used to take days in minutes. Tell it your goal and watch it work.</p>
+
+                    <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 16px; margin-top: 24px;">Collaborates
+                        with your team</h4>
+
+                    <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 16px; margin-top: 24px;">Knows
+                        everything you know</h4>
+
+                    <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 16px; margin-top: 24px;">Personalized
+                        to you</h4>
+                </div>
+            </div>
+            <div class="intro-visual">
+                <img src="images/notion-3-demo.png" alt="Notion 3.0 Bug Tracker">
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="testimonials-container">
+            <h2>Trusted by teams that ship.</h2>
+
+            <div class="testimonial-featured">
+                <div class="testimonial-content">
+                    <h3>OpenAI</h3>
+                    <blockquote class="testimonial-quote">
+                        "There's power in a single platform where you can do all your work. Notion is that single
+                        place."
+                    </blockquote>
+                    <a href="#" class="testimonial-link">Read the full story →</a>
+                </div>
+                <div class="testimonial-video">
+                    <img src="images/testimonial-openai-video.jpg" alt="OpenAI Testimonial">
+                    <div class="play-button">▶</div>
+                </div>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <h4>TOYOTA</h4>
+                    <p>Streamlined workflows to reduce timelines by 3x. →</p>
+                </div>
+                <div class="testimonial-card">
+                    <h4>ramp ↗</h4>
+                    <p>"With Notion, every person at Ramp has an AI agent." →</p>
+                </div>
+                <div class="testimonial-card">
+                    <h4>▲Vercel</h4>
+                    <p>"Notion understands that you can solve a lot of problems with one tool." →</p>
+                </div>
+                <div class="testimonial-card">
+                    <h4>MatchGroup</h4>
+                    <p>"Notion has been the most powerful and impactful way to streamline our workflow." →</p>
+                </div>
+                <div class="testimonial-card">
+                    <h4>CURSOR</h4>
+                    <p>"Using the most AI-native tools like Notion is an important competitive advantage for us." →</p>
+                </div>
+                <div class="testimonial-card">
+                    <h4>Figma</h4>
+                    <p>One hub for work and AI keeps everyone informed and work flowing. →</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Forbes Quote -->
+    <section class="quote-section">
+        <blockquote>"Your AI everything app."</blockquote>
+        <cite>Forbes</cite>
+    </section>
+
+    <!-- Pricing Calculator -->
+    <section class="pricing-calculator">
+        <div class="calculator-container">
+            <div class="calculator-content">
+                <h2>More productivity.<br>Fewer tools.</h2>
+                <p>Bring all your tools and teams under one roof. Calculate savings below.</p>
+                <a href="#" class="calculator-link">See pricing plans →</a>
+            </div>
+            <div class="calculator-visual">
+                <img src="images/tools-consolidated.png" alt="Tools Consolidation">
+                <div class="calculator-form">
+                    <div class="form-section">
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="ai-search">
+                                <label for="ai-search">AI Search</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="ai-chatbot" checked>
+                                <label for="ai-chatbot">AI Chatbot <small>$20/user</small></label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="ai-meeting">
+                                <label for="ai-meeting">AI Meeting Notes</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="ai-writing">
+                                <label for="ai-writing">AI Writing Assistant</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="email-app">
+                                <label for="email-app">AI Email App</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="ai-research">
+                                <label for="ai-research">AI Research</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="calendar">
+                                <label for="calendar">Calendar Scheduling</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="team-wiki" checked>
+                                <label for="team-wiki">Team Wiki <small>$10/user</small></label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="project-mgmt" checked>
+                                <label for="project-mgmt">Project Management Tool <small>$24/user</small></label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="crm">
+                                <label for="crm">Basic CRM</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="site-builder">
+                                <label for="site-builder">Site Builder</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="forms">
+                                <label for="forms">Forms</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pricing-display">
+                        <div class="pricing-item">
+                            <h4>Team size</h4>
+                            <div class="price">10</div>
+                        </div>
+                        <div class="pricing-item">
+                            <h4>Monthly savings</h4>
+                            <div class="price">$340</div>
+                        </div>
+                        <div class="pricing-item">
+                            <h4>Annual savings</h4>
+                            <div class="price">$4,080</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-carousel">
+        <div class="carousel-track">
+            <div class="carousel-item">62% of Fortune 100</div>
+            <div class="carousel-item">Over 50% of YC companies</div>
+            <div class="carousel-item">1.4M+ community members</div>
+            <div class="carousel-item">Over 100M users worldwide</div>
+            <div class="carousel-item">#1 knowledge base 3 years running (G2)</div>
+            <div class="carousel-item">#1 AI enterprise search (G2)</div>
+            <div class="carousel-item">#1 rated AI writing (G2)</div>
+        </div>
+    </section>
+
+    <style>
+        .stats-carousel {
+            overflow: hidden;
+            white-space: nowrap;
+            background: #f7f6f3;
+            padding: 15px 0;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .stats-carousel::before,
+        .stats-carousel::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 80px;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .stats-carousel::before {
+            left: 0;
+            background: linear-gradient(to right, #f7f6f3 0%, rgba(247, 246, 243, 0) 100%);
+        }
+
+        .stats-carousel::after {
+            right: 0;
+            background: linear-gradient(to left, #f7f6f3 0%, rgba(247, 246, 243, 0) 100%);
+        }
+
+        .carousel-track {
+            display: inline-flex;
+            gap: 60px;
+            animation: scroll 20s linear infinite;
+        }
+
+        .carousel-item {
+            font-size: 16px;
+            color: #4a4a4a;
+            display: inline-block;
+            white-space: nowrap;
+            opacity: 0.9;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+
+    <script>
+        // Clone items to create infinite effect
+        const track = document.querySelector('.carousel-track');
+        const items = [...track.children];
+        items.forEach(item => {
+            const clone = item.cloneNode(true);
+            track.appendChild(clone);
+        });
+
+        // Pause on hover
+        track.addEventListener('mouseover', () => {
+            track.style.animationPlayState = 'paused';
+        });
+        track.addEventListener('mouseout', () => {
+            track.style.animationPlayState = 'running';
+        });
+    </script>
+
+
+    <!-- AI Use Cases -->
+    <section class="ai-use-cases">
+        <div class="use-cases-container">
+            <div class="use-cases-header">
+                <h2>Let Notion AI handle the busywork.</h2>
+                <div class="use-cases-characters">
+                    <img src="images/ai-characters.png" alt="AI Characters">
+                </div>
+            </div>
+            <p style="font-size: 18px; color: #666; margin-bottom: 40px;">Pick a use case to see how Notion does the
+                work for you.</p>
+            <a href="#" class="calculator-link" style="margin-bottom: 40px; display: inline-block;">Explore more →</a>
+
+            <div class="use-cases-grid">
+                <a href="#" class="use-case-card">
+                    <span class="use-case-icon">💡</span>
+                    <h3>Go from brainstorm to roadmap</h3>
+                    <span class="use-case-arrow">→</span>
+                </a>
+                <a href="#" class="use-case-card">
+                    <span class="use-case-icon">📋</span>
+                    <h3>Turn meetings into social posts</h3>
+                    <span class="use-case-arrow">→</span>
+                </a>
+                <a href="#" class="use-case-card">
+                    <span class="use-case-icon">📁</span>
+                    <h3>Organize your workspace</h3>
+                    <span class="use-case-arrow">→</span>
+                </a>
+                <a href="#" class="use-case-card">
+                    <span class="use-case-icon">👤</span>
+                    <h3>Onboard a new hire</h3>
+                    <span class="use-case-arrow">→</span>
+                </a>
+                <a href="#" class="use-case-card">
+                    <span class="use-case-icon">🌐</span>
+                    <h3>Revise a landing page</h3>
+                    <span class="use-case-arrow">→</span>
+                </a>
+                <a href="#" class="use-case-card">
+                    <span class="use-case-icon">📊</span>
+                    <h3>Plan an offsite</h3>
+                    <span class="use-case-arrow">→</span>
+                </a>
+                <a href="#" class="use-case-card">
+                    <span class="use-case-icon">🍴</span>
+                    <h3>Track favorite restaurants</h3>
+                    <span class="use-case-arrow">→</span>
+                </a>
+                <a href="#" class="use-case-card">
+                    <span class="use-case-icon">⚙️</span>
+                    <h3>Transform notes into tasks</h3>
+                    <span class="use-case-arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="products-container">
+            <div class="product-card">
+                <div class="product-info">
+                    <h3>
+                        <span class="product-icon">📦</span>
+                        Get started on Notion
+                    </h3>
+                    <p>Your AI workspace with built-in agents.</p>
+                    <a href="#" class="hero-btn hero-btn-primary">Download for Mac</a>
+                </div>
+                <div class="product-visual">
+                    <img src="images/design-system.png" alt="Design System">
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-info">
+                    <h3>
+                        <span class="product-icon">✉️</span>
+                        Notion Mail
+                    </h3>
+                    <p>The AI inbox that thinks like you.</p>
+                    <a href="#" class="hero-btn hero-btn-secondary">Download</a>
+                </div>
+                <div class="product-visual">
+                    <img src="images/notion-mail.png" alt="Notion Mail">
+                </div>
+            </div>
+
+            <div class="product-card" style="grid-column: 1 / -1;">
+                <div class="product-info">
+                    <h3>
+                        <span class="product-icon">📅</span>
+                        Notion Calendar
+                    </h3>
+                    <p>Time, scheduling, tasks—all together.</p>
+                    <a href="#" class="hero-btn hero-btn-secondary">Download</a>
+                </div>
+                <div class="product-visual">
+                    <img src="images/notion-calendar.png" alt="Notion Calendar">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Browser Section -->
+    <section style="padding: 80px 40px; background: #f7f7f7; text-align: center;">
+        <p style="font-size: 18px; color: #666;">Notion is always at home right <a href="#"
+                style="color: #0073EA; text-decoration: underline;">in your browser</a>.</p>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta-section">
+        <h2>Try for free.</h2>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="footer-logo">
+                        <img src="images/notion-logo.svg" alt="Notion">
+                        <span>Notion</span>
+                    </a>
+                    <div class="social-links">
+                        <a href="#">📷</a>
+                        <a href="#">🐦</a>
+                        <a href="#">💼</a>
+                        <a href="#">📘</a>
+                        <a href="#">▶️</a>
+                    </div>
+                    <div style="margin-top: 32px;">
+                        <select
+                            style="padding: 8px 12px; border: 1px solid #e8e8e8; border-radius: 6px; background: #fff;">
+                            <option>🌐 English (US)</option>
+                        </select>
+                    </div>
+                    <div style="margin-top: 16px;">
+                        <a href="#" style="color: #666; font-size: 14px; text-decoration: none;">Cookie settings</a>
+                    </div>
+                    <div style="margin-top: 32px; color: #999; font-size: 12px;">
+                        © 2025 Notion Labs, Inc.
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Security</a></li>
+                        <li><a href="#">Status</a></li>
+                        <li><a href="#">Terms & privacy</a></li>
+                        <li><a href="#">Your privacy rights</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Download</h4>
+                    <ul>
+                        <li><a href="#">iOS & Android</a></li>
+                        <li><a href="#">Mac & Windows</a></li>
+                        <li><a href="#">Calendar</a></li>
+                        <li><a href="#">Web Clipper</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Help center</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Integrations</a></li>
+                        <li><a href="#">Templates</a></li>
+                        <li><a href="#">Partner programs</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Notion for</h4>
+                    <ul>
+                        <li><a href="#">Enterprise</a></li>
+                        <li><a href="#">Small business</a></li>
+                        <li><a href="#">Personal</a></li>
+                    </ul>
+                    <div style="margin-top: 32px;">
+                        <a href="#" style="color: #000; font-weight: 600; text-decoration: none;">Explore more →</a>
+                    </div>
+                    <div style="margin-top: 16px;">
+                        <img src="images/footer-preview.png" alt="Notion Preview"
+                            style="width: 100%; border-radius: 8px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
